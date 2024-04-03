@@ -12,12 +12,3 @@ export async function getUserByEmail(email) {
     console.log(error);
   }
 }
-
-export async function getUserById({ Id }) {
-  const user = await prisma.user.findById({
-    where: {
-      Id,
-    },
-  });
-  return user;
-}

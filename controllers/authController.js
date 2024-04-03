@@ -92,11 +92,11 @@ export const login = async (req, res) => {
     res.status(200).send({
       success: true,
       message: "Login successful",
+      token,
       user: {
         username: user.username,
         email: user.email,
       },
-      token,
     });
   } catch (error) {
     console.log(error),

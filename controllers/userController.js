@@ -1,5 +1,4 @@
 import prisma from "../prisma/Prisma.js";
-import { getUserById } from "../prisma/db-operations.js";
 
 // Get all users
 export const getAllUsers = async (req, res) => {
@@ -14,7 +13,11 @@ export const getAllUsers = async (req, res) => {
 // Get a single user by ID
 export const getUser = async (req, res) => {
   try {
-    const user = await getUserById(req.params.userId);
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.params.userId,
+      },
+    });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
